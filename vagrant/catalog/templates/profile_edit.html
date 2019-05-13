@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<card>
+  <div class="row">
+    <div class="col-md-4 card-body">
+      <form action="#" method = "post">
+        <div class="form-group row">
+          <label for="category" class="col-12 col-form-label">Name</label>
+          <div class="col-md">
+            <input id="text" name="name" class="form-control here" type="text" value="{{ name }}">
+          </div>
+        </div>
+        <div class="form-group row">
+        <div class="col-12">
+          <button name="submit" type="submit" class="btn btn-info btn-sm">Submit</button>
+          <a href="{{url_for('showProfile')}}"><button type="button" class="btn btn-danger btn-sm">Cancel</button></a>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</card>
+{% endblock %}

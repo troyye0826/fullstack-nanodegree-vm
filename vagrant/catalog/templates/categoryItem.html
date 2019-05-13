@@ -1,0 +1,42 @@
+{% extends "list_content.html" %}
+
+{% block category_content %}
+
+  <div class="list-group ">
+    <a href="{{url_for('showAllItems')}}" class="list-group-item list-group-item-action bg-info text-white">Categories</a>
+    {% for category in categories %}
+      {% if category == category_name %}
+        <a href="{{url_for('showCategoryItem', category_name = category)}}" class="list-group-item list-group-item-action active">{{category}}</a>
+      {% else %}
+        <a href="{{url_for('showCategoryItem', category_name = category)}}" class="list-group-item list-group-item-action">{{category}}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+
+{% endblock %}
+
+{% block item_content %}
+<div class="card">
+  <div class="card-body">
+    <div class="row border-bottom py-2">
+         <div class="col-md">
+             <h4>{{ category_name }}</h4>
+         </div>
+         {% if login %}
+         <div class="col-md">
+             <button type="button" class="btn btn-sm btn-success float-right "><a href="{{url_for('newItem')}}" class="text-white">Add New</a></button>
+         </div>
+         {% endif %}
+     </div>
+     <div class="list-group py-3">
+       {% for item in items %}
+
+         <a href = "{{url_for('showItemDetail', category_name = item.category.name, item_name = item.name)}}">{{item.name}}</a>
+       {% endfor %}
+     </div>
+  </div>
+</div>
+
+
+{% endblock %}

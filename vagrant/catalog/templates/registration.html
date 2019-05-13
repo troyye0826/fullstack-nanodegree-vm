@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="card">
+  <article class="card-body">
+  	<h4 class="card-title mb-4 mt-1">Registration</h4>
+  	<p>
+  		<a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-google"></i>  Login via Google</a>
+  	</p>
+  	<hr>
+  	<form action="#" method = "post">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+  		    <span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
+  		  </div>
+        <input name="username" class="form-control" placeholder="Email or login">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+    		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+    		</div>
+        <input class="form-control" placeholder="******" type="password" name="password">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+    		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+    		</div>
+        <input class="form-control" placeholder="Name" type="text" name="name">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+    		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+    		</div>
+        <input class="form-control" placeholder="Email" type="email" name="email">
+      </div> <!-- form-group// -->
+      <div class="row">
+          <div class="col-md">
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+              </div> <!-- form-group// -->
+          </div>
+      </div> <!-- .row// -->
+      <p class="text-center">Have an account? <a href="{{url_for('showLogin')}}">Log In</a> </p>
+  </form>
+  </article>
+</div>
+{% endblock %}

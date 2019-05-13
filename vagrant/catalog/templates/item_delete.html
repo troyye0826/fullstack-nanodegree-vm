@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="card">
+  <div class="card-header">
+      <h2>Delete Item {{ item_name }}</h2>
+  </div>
+  <div class="card-body">
+    <p>Are you sure you want to delete {{ item_name }}?</p>
+
+    <div class="row py-2">
+      <div class="col-md">
+        <form action="#" method = "post">
+          <a href=""><button type="submit" class="btn btn-danger" id="submit" type="submit">Submit</button></a>
+        </form>
+      </div>
+      <!-- <div class="col-md">
+        <a href="{{url_for('showItemDetail', category_name = category_name, item_name = item_name)}}"><button type="button" class="btn btn-info">Cancel</button></a>
+      </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

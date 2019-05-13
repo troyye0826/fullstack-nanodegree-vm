@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fix">
+	<div class="nav navbar-nav navbar-left">
+		<a class="navbar-brand navbar-collapse collapse order-1" style="color:#fff" href="{{url_for('showAllItems')}}">Catalog App</a>
+	</div>
+	{% if not user_page %}
+	<div class="nav navbar-nav navbar-right" style="position:absolute; right:0px">
+		{% if login %}
+		<div class="user_info">
+			<div class="row px-5">
+					<!-- <div class="dropdown px-5">
+					  <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Welcome, {{username}}
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu">
+					    <li><a href="/profile" class="mx-5">Profile</a></li>
+					    <li><a href="/logout" data-toggle="modal" data-target="#myModal" class="mx-5">Logout</a></li>
+					  </ul>
+					</div> -->
+					<div class="dropdown">
+					  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Welcome, {{username}}
+					  </button>
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+					    <a class="dropdown-item" href="/profile">Profile</a>
+					    <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#myModal">Logout</a>
+					  </div>
+					</div>
+			</div>
+		</div>
+		{% else %}
+			<a class="navbar-brand" style="color:#fff" href="{{url_for('showLogin')}}">Login</a>
+		{% endif %}
+	</div>
+	{% endif %}
+</nav>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Logout</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure to Logout?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+				<button type="button" class="btn btn-danger" id="deleteBtn">Confirm</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$('#deleteBtn').click(function() {
+		$.ajax({
+				type: 'POST',
+				url: '/logout',
+				processData: false,
+				contentType: 'application/octet-stream; charset=utf-8',
+				success: function(result) {
+					// Handle or verify the server response if necessary.
+					if (result) {
+						console.log(result)
+						setTimeout(function() {
+						 window.location.href = "/";
+						 $('#myModal').modal('hide');
+					 }, 1000);
+
+
+					} else if (authResult['error']) {
+							console.log('There was an error: ' + authResult['error']);
+					} else {
+						// $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+					}
+				}
+
+		})
+	});
+
+</script>
