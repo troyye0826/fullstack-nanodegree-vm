@@ -27,18 +27,16 @@ import httplib2
 import json
 from flask import make_response
 import requests
-import os
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-with app.open_resource('client_secrets.json') as f:
-    CLIENT_ID = json.load(f)['web']['client_id']
 
+CLIENT_ID = json.loads(
+    open('client_secrets.json', 'r').read())['web']['client_id']
 
 # Connect to Database and create database session
-DB_URL = 'postgresql://root:root@127.0.0.1:5432/catalog'
-engine = create_engine(DB_URL, echo=True)
+engine = create_engine('sqlite:///categoryitem.db?check_same_thread=False')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -300,11 +298,9 @@ def gconnect():
     code = request.data
     try:
         # Upgrade the authorization code into a credentials object
-        with app.open_resource('client_secrets.json') as f:
-            # CLIENT_ID = json.load(f)['web']['client_id']
-            oauth_flow = flow_from_clientsecrets(f, scope='')
-            oauth_flow.redirect_uri = 'postmessage'
-            credentials = oauth_flow.step2_exchange(code)
+        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow.redirect_uri = 'postmessage'
+        credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
         response = make_response(
             json.dumps('Failed to upgrade the authorization code.'), 401)

@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-3 category-container">
+    {% block category_content %}
+    {% endblock %}
+  </div>
+  <div class="col-md-9 item-container">
+    {% block item_content %}
+    {% endblock %}
+  </div>
+  <div class = "col-md-9 item-detail">
+    {% block item_detail %}
+    {% endblock %}
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header text-center">
+    <figure>
+        {% if picture %}
+          <img src="{{picture}}" alt="" class="rounded-circle" style="width:75px;" id="user-img">
+        {% else %}
+          <img src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" class="rounded-circle" style="width:75px;" id="user-img">
+        {% endif %}
+    </figure>
+    <h5 style="text-align:center;"><strong id="user-name">{{ username }}</strong></h5>
+  </div>
+  <div class="card-body">
+    <div class="row" style="text-align:center;">
+      <div class="col-md">
+        <p style="text-align:center;overflow-wrap: break-word;" id="user-email"> {{email}} </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md">
+        <a href="{{url_for('editProfile', user_id = user_id, name = name)}}" class="text-white"><button type="button" class="btn btn-sm btn-info btn-block">Edit</button></a>
+      </div>
+      <div class="col-md">
+        <a href="{{url_for('showAllItems')}}" class="text-white"><button type="button" class="btn btn-sm btn-danger btn-block">Cancel</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models import Category, Base, CateItem, User
+from model import Category, Base, CateItem, User
 
 DB_URL = 'postgresql://root:root@127.0.0.1:5432/catalog'
 engine = create_engine(DB_URL, echo=True)

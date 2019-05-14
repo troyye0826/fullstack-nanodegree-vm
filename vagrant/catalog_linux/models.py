@@ -26,7 +26,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     username = Column(String(32), index=True)
-    password_hash = Column(String(64))
+    password_hash = Column(String(250))
     name = Column(String(32))
     g_id = Column(String(250))
     email = Column(String(250), unique=True)

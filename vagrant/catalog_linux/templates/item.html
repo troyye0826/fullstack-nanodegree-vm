@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+
+<div class="card">
+  <div class="card-header"><h2>{{ item.name }}</h2></div>
+  <div class="card-body">
+    <p>Description: {{ item.description }}</p>
+    {% if owner %}
+    <div class="row py-2">
+      <div class="col-md">
+        <a href="{{url_for('editItem', category_name = category_name, item_name = item.name)}}"><button type="button" class="btn btn-info">Edit</button></a>
+        <a href="{{url_for('deleteItem', category_name = category_name, item_name = item.name)}}"><button type="button" class="btn btn-danger">Delete</button></a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

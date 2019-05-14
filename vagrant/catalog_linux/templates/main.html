@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+		<meta name="google-signin-client_id" content="297791646454-9ognpot0lo7on4aolnqnbu9ou3stsio1.apps.googleusercontent.com">
+		<script src="//apis.google.com/js/platform.js?onload=start"></script>
+		
+		<script  type="text/javascript">
+			$(function() {
+			  $('a#logout').bind('click', function() {
+					var r = confirm("Confirm to logout?");
+					console.log(r);
+					if (r==true){
+						$.post('/logout',
+				        function(data) {
+				      		//do nothing
+									console.log(data);
+									if (data == "False"){
+										window.location.href = "/"
+									}
+				    		});
+				    		return false;
+					}
+
+			  });
+			});
+		</script>
+
+	</head>
+	<body>
+		{% include "header.html" %}
+		</br>
+		<div class="container">
+			<div class = 'flash'>
+				{% with messages = get_flashed_messages() %}
+		      {% if messages %}
+
+		        <ul>
+		        {% for message in messages %}
+		            <li> <strong> {{ message }} </strong> </li>
+		        {% endfor %}
+		        </ul>
+		        {% endif %}
+		    {% endwith %}
+
+		</div>
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
